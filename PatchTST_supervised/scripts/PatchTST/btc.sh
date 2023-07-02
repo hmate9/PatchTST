@@ -40,9 +40,9 @@ do
       --patch_len 16\
       --stride 8\
       --des 'Exp' \
-      --train_epochs 100\
-      --patience 10\
+      --train_epochs 300\
+      --patience 10000\
       --lradj 'TST'\
       --pct_start 0.2\
-      --itr 1 --batch_size 24 --learning_rate 0.001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+      --itr 1 --batch_size 1024 --learning_rate 0.001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
