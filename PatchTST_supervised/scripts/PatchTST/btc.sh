@@ -24,7 +24,7 @@ do
       --model_id $model_id_name_$seq_len'_'$pred_len \
       --model $model_name \
       --data $data_name \
-      --features MS \
+      --features M \
       --target 'gain' \
       --seq_len $seq_len \
       --pred_len $pred_len \
@@ -44,5 +44,5 @@ do
       --patience 10000\
       --lradj 'TST'\
       --pct_start 0.2\
-      --itr 1 --batch_size 1024 --learning_rate 0.001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
+      --itr 1 --batch_size 1024 --learning_rate 0.0001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
 done
