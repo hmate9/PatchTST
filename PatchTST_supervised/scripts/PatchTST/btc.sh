@@ -41,7 +41,7 @@ do
       --stride 8\
       --des 'Exp' \
       --train_epochs 300\
-      --patience 10000\
+      --patience 15\
       --lradj 'TST'\
       --pct_start 0.2\
       --itr 1 --batch_size 1024 --learning_rate 0.0001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 
