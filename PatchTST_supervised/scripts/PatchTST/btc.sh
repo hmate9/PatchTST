@@ -14,7 +14,7 @@ model_id_name=btc
 data_name=custom
 
 random_seed=2021
-for pred_len in 3
+for pred_len in 1, 3, 5, 10
 do
     python3 -u run_longExp.py \
       --random_seed $random_seed \
@@ -25,7 +25,7 @@ do
       --model $model_name \
       --data $data_name \
       --features M \
-      --target 'gain' \
+      --target 'ibs' \
       --seq_len $seq_len \
       --pred_len $pred_len \
       --enc_in 862 \

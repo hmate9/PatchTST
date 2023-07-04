@@ -39,11 +39,13 @@ def add_features(df):
 
   df['volume_20_diff'] = df['volume'] / df['volume'].rolling(20).mean() - 1
 
+  df['bar_size'] = (df['high'] - df['low']) / df['close']
+
   features = ['open', 'high', 'low', 'close', 'gain', 'ibs', 'volume', 'close_10_diff', 'close_20_diff', 'close_50_diff']
 
   features = ['open', 'high', 'low', 'close', 'gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx']
 
-  features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx']
+  features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size']
 
 
   return features
