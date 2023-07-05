@@ -195,6 +195,8 @@ class Exp_Main(Exp_Basic):
                     loss = criterion(outputs, batch_y)
                     # Print the last output
                     print(outputs[-1])
+                    # Print the loss
+                    print(loss)
                     train_loss.append(loss.item())
 
                 if (i + 1) % 100 == 0:
