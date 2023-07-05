@@ -193,6 +193,8 @@ class Exp_Main(Exp_Basic):
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                     loss = criterion(outputs, batch_y)
+                    # Print the last output
+                    print(outputs[-1])
                     train_loss.append(loss.item())
 
                 if (i + 1) % 100 == 0:
