@@ -194,6 +194,8 @@ class Exp_Main(Exp_Basic):
                     outputs = nn.Softmax(dim=1)(outputs)
                     print("afyter softmax:", outputs.shape)
 
+                    print("batch y shaope:", batch_y.shape)
+
                     # print(outputs.shape,batch_y.shape)
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
