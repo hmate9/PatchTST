@@ -185,8 +185,8 @@ class Exp_Main(Exp_Basic):
                         else:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, batch_y)
 
-                    # Delete last dimension from outputs
-                    outputs = torch.squeeze(outputs)
+                    # Reshape the outputs from (x, y, z) to (x, z, y)
+                    outputs = outputs.permute(0, 2, 1)
                     # Softmax the outputs
                     outputs = nn.Softmax(dim=1)(outputs)
 
