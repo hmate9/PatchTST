@@ -194,6 +194,7 @@ class Exp_Main(Exp_Basic):
                     print(outputs.shape)
                     # Reshape the outputs from (x, y, z) to (x, z, y)
                     outputs = outputs.permute(0, 2, 1)
+                    batch_y = batch_y.permute(0, 2, 1)
                     print(outputs.shape)
                     # Softmax the outputs
                     outputs = nn.Softmax(dim=1)(outputs)
