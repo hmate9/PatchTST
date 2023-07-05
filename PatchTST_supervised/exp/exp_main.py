@@ -206,10 +206,12 @@ class Exp_Main(Exp_Basic):
                 print("Early stopping")
                 break
 
-            if self.args.lradj != 'TST':
+            if self.args.lradj == 'TST':
                 adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args)
             else:
-                print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0]))
+                # print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0])))
+                # Print out the optimizers current learning rate
+                print('Learning rate: {}'.format(scheduler.get_last_lr()[0]))
 
         best_model_path = path + '/' + 'checkpoint.pth'
         self.model.load_state_dict(torch.load(best_model_path))
