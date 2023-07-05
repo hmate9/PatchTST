@@ -49,6 +49,8 @@ class Exp_Main(Exp_Basic):
 
     def _select_criterion(self):
         criterion = nn.MSELoss()
+        # Cross Entropy Loss
+        criterion = nn.CrossEntropyLoss()
         return criterion
 
     def vali(self, vali_data, vali_loader, criterion):
@@ -113,6 +115,19 @@ class Exp_Main(Exp_Basic):
 
         model_optim = self._select_optimizer()
         criterion = self._select_criterion()
+        # Set the category weights of the criterion
+        # First calculate the category weights
+        category_weights = torch.zeros(2)
+        for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(train_loader):
+            batch_y = batch_y.float()
+            category_weights[0] += torch.sum(batch_y == 0)
+            category_weights[1] += torch.sum(batch_y == 1)
+
+        # Then normalize the weights
+        category_weights = category_weights / torch.sum(category_weights)
+
+        # Then set the weights
+        criterion = nn.CrossEntropyLoss(weight=category_weights)
 
         if self.args.use_amp:
             scaler = torch.cuda.amp.GradScaler()
@@ -167,6 +182,10 @@ class Exp_Main(Exp_Basic):
                             
                         else:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, batch_y)
+
+                    # Softmax the outputs
+                    outputs = nn.Softmax(dim=1)(outputs)
+
                     # print(outputs.shape,batch_y.shape)
                     f_dim = -1 if self.args.features == 'MS' else 0
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]

@@ -41,11 +41,14 @@ def add_features(df):
 
   df['bar_size'] = (df['high'] - df['low']) / df['close']
 
+  # True if the next gain is in the top 10% of gains
+  df['next_gain_is_big'] = (df['gain'].shift(-1) > df['gain'].shift(-1).quantile(0.9)).astype(int)
+
   features = ['open', 'high', 'low', 'close', 'gain', 'ibs', 'volume', 'close_10_diff', 'close_20_diff', 'close_50_diff']
 
   features = ['open', 'high', 'low', 'close', 'gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx']
 
-  features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size']
+  features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size', 'next_gain_is_big']
 
 
   return features
