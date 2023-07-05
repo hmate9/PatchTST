@@ -202,7 +202,7 @@ class Exp_Main(Exp_Basic):
 
                     print("batch y shaope:", batch_y.shape)
 
-                    loss = criterion(outputs, batch_y)
+                    loss = criterion(outputs.squeeze(), batch_y.squeeze())
                     # Print the last output
                     print(outputs[-1])
                     # Print the loss
