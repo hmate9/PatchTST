@@ -117,11 +117,11 @@ class Exp_Main(Exp_Basic):
         if self.args.use_amp:
             scaler = torch.cuda.amp.GradScaler()
             
-        scheduler = lr_scheduler.OneCycleLR(optimizer = model_optim,
-                                            steps_per_epoch = train_steps,
-                                            pct_start = self.args.pct_start,
-                                            epochs = self.args.train_epochs,
-                                            max_lr = self.args.learning_rate)
+        # scheduler = lr_scheduler.OneCycleLR(optimizer = model_optim,
+        #                                     steps_per_epoch = train_steps,
+        #                                     pct_start = self.args.pct_start,
+        #                                     epochs = self.args.train_epochs,
+        #                                     max_lr = self.args.learning_rate)
 
         for epoch in range(self.args.train_epochs):
             iter_count = 0
@@ -190,9 +190,9 @@ class Exp_Main(Exp_Basic):
                     loss.backward()
                     model_optim.step()
                     
-                if self.args.lradj == 'TST':
-                    adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args, printout=False)
-                    scheduler.step()
+                # if self.args.lradj == 'TST':
+                #     adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args, printout=False)
+                #     scheduler.step()
 
             print("Epoch: {} cost time: {}".format(epoch + 1, time.time() - epoch_time))
             train_loss = np.average(train_loss)
@@ -206,12 +206,15 @@ class Exp_Main(Exp_Basic):
                 print("Early stopping")
                 break
 
-            if self.args.lradj == 'TST':
-                adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args)
-            else:
-                # print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0])))
-                # Print out the optimizers current learning rate
-                print('Learning rate: {}'.format(scheduler.get_last_lr()[0]))
+            # if self.args.lradj == 'TST':
+            #     adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args)
+            # else:
+            #     # print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0])))
+            #     # Print out the optimizers current learning rate
+            #     print('Learning rate: {}'.format(scheduler.get_last_lr()[0]))
+
+            # Print out the current learning rate
+            print('Learning rate: {}'.format(model_optim.param_groups[0]['lr']))
 
         best_model_path = path + '/' + 'checkpoint.pth'
         self.model.load_state_dict(torch.load(best_model_path))
