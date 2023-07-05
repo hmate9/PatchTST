@@ -185,6 +185,11 @@ class Exp_Main(Exp_Basic):
                         else:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark, batch_y)
 
+                    # print(outputs.shape,batch_y.shape)
+                    f_dim = -1 if self.args.features == 'MS' else 0
+                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
+                    batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
+
                     # print the shaoe of outputs
                     print(outputs.shape)
                     # Reshape the outputs from (x, y, z) to (x, z, y)
@@ -196,10 +201,6 @@ class Exp_Main(Exp_Basic):
 
                     print("batch y shaope:", batch_y.shape)
 
-                    # print(outputs.shape,batch_y.shape)
-                    f_dim = -1 if self.args.features == 'MS' else 0
-                    outputs = outputs[:, -self.args.pred_len:, f_dim:]
-                    batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
                     loss = criterion(outputs, batch_y)
                     # Print the last output
                     print(outputs[-1])
