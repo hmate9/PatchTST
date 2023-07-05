@@ -25,7 +25,7 @@ do
       --model $model_name \
       --data $data_name \
       --features M \
-      --target 'ibs' \
+      --target 'next_gain_is_big' \
       --seq_len $seq_len \
       --pred_len $pred_len \
       --enc_in 862 \
