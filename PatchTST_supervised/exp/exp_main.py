@@ -89,8 +89,8 @@ class Exp_Main(Exp_Basic):
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
 
-                pred = outputs.detach().cpu()
-                true = batch_y.detach().cpu()
+                pred = outputs.detach().#cpu()
+                true = batch_y.detach().#cpu()
 
                 loss = criterion(pred, true)
 
@@ -125,8 +125,8 @@ class Exp_Main(Exp_Basic):
 
         # Then normalize the weights
         category_weights = category_weights / torch.sum(category_weights)
-        # Move the weights to the cpu
-        category_weights = category_weights.to('cpu')
+        # Move the weights to the device
+        category_weights = category_weights.to(self.device)
 
         # Then set the weights
         criterion = nn.CrossEntropyLoss(weight=category_weights)
