@@ -89,8 +89,8 @@ class Exp_Main(Exp_Basic):
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
 
-                pred = outputs.detach().#cpu()
-                true = batch_y.detach().#cpu()
+                pred = outputs.detach()#cpu()
+                true = batch_y.detach()#cpu()
 
                 loss = criterion(pred, true)
 
