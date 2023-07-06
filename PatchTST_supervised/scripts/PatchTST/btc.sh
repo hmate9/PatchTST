@@ -14,7 +14,7 @@ model_id_name=btc
 data_name=custom
 
 random_seed=2021
-for pred_len in 1 3 5 10
+for pred_len in 1
 do
     python3 -u run_longExp.py \
       --random_seed $random_seed \
@@ -40,8 +40,8 @@ do
       --patch_len 16\
       --stride 8\
       --des 'Exp' \
-      --train_epochs 300\
-      --patience 15\
+      --train_epochs 3000\
+      --patience 3000\
       --lradj 'TST'\
       --pct_start 0.2\
       --itr 1 --batch_size 1024 --learning_rate 0.0001 #>logs/btc/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log 

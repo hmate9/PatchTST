@@ -206,7 +206,7 @@ class Exp_Main(Exp_Basic):
                 print("Early stopping")
                 break
 
-            # if self.args.lradj == 'TST':
+            # if self.args.lradj != 'TST':
             #     adjust_learning_rate(model_optim, scheduler, epoch + 1, self.args)
             # else:
             #     # print('Updating learning rate to {}'.format(scheduler.get_last_lr()[0])))
