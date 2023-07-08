@@ -24,7 +24,7 @@ do
       --model_id $model_id_name_$seq_len'_'$pred_len \
       --model $model_name \
       --data $data_name \
-      --features M \
+      --features MS \
       --target 'ibs' \
       --seq_len $seq_len \
       --pred_len $pred_len \
