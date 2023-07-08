@@ -1,7 +1,7 @@
 import pandas as pd
 import ta
 
-df = pd.read_csv('../BTCUSDT_1h.csv')
+df = pd.read_csv('../BTCUSDT_15m.csv')
 
 # Drop the first 10% of rows
 df = df.iloc[int(len(df)*0.1):].reset_index(drop=True)
@@ -64,4 +64,4 @@ df = df.dropna().reset_index(drop=True)
 df = df[features + ['date']]
 
 # Save the data
-df.to_csv('../BTCUSDT_1h_features.csv', index=False)
+df.to_csv('../BTCUSDT_15m_features.csv', index=False)
