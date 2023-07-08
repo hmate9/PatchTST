@@ -47,7 +47,7 @@ def add_features(df):
 
   features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size']
 
-  features = ['open', 'high', 'low', 'close', 'gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size']
+  features = ['gain', 'ibs', 'close_10_diff', 'close_20_diff', 'close_50_diff', 'rsi', 'adx', 'bar_size']
 
 
   return features
