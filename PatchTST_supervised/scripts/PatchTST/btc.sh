@@ -9,7 +9,7 @@ seq_len=240
 model_name=PatchTST
 
 root_path_name=../
-data_path_name=BTCUSDT_1h_features.csv
+data_path_name=BTCUSDT_15m_features.csv
 model_id_name=btc
 data_name=custom
 
